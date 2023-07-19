@@ -4,6 +4,6 @@ project(DSA)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(d
-        BinarySearchTree.h
+        "Chapter 4 Trees/BinarySearchTree.h"
         main.cpp
         )

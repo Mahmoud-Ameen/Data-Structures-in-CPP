@@ -16,20 +16,53 @@ public:
     ~BinarySearchTree();                           // destructor
 
     /*** Public Constant Methods  ***/
+    /**
+     * @return constant reference to the minimum value in the tree
+     * @return nullptr if tree is empty
+     * */
     const Comparable& findMin() const;
+    /**
+     * @return constant reference to the maximum value in the tree
+     * @return nullptr if tree is empty
+     * */
     const Comparable& findMax() const;
+    /**
+     * @brief searches the tree for an element.
+     * @param element Comparable to be searched for.
+     * @return true if found, otherwise false.
+     * */
     bool contains(const Comparable& element) const;
+    /**
+     * @brief Checks if the tree is empty.
+     * @return true if empty, otherwise false.
+     * */
     bool isEmpty() const;
+    /**
+     * @brief prints the tree.
+     * */
     void printTree() const;
 
     /*** Public Non-Constant Methods  ***/
+    /**
+     * @brief clears the tree.
+     * */
     void makeEmpty();
+    /**
+     * @brief inserts an element to the tree.
+     * if element already exists, nothing happens.
+     * */
     void insert(const Comparable& element);
     void insert(Comparable&& element);
+    /**
+     * @brief removes an element from the tree
+     * if the element doesn't exist, nothing happens.
+     * */
     void remove(const Comparable& element);
     void remove(Comparable&& element);
 
+    // copy assignment operator
     BinarySearchTree& operator= (const BinarySearchTree& rhs);
+    // move constructor
     BinarySearchTree& operator= (BinarySearchTree&& rhs);
 
 private:
