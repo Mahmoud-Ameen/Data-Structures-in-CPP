@@ -59,8 +59,8 @@ public:
      * @brief removes an value from the tree
      * if the value doesn't exist, nothing happens.
      * */
-    void remove(const Comparable& element);
-    void remove(Comparable&& element);
+    void remove(const Comparable& value);
+    void remove(Comparable&& value);
 
     // copy assignment operator
     BinarySearchTree& operator= (const BinarySearchTree& rhs);
@@ -73,8 +73,8 @@ private:
         BinaryNode* right = nullptr;
         BinaryNode* left = nullptr;
 
-        explicit BinaryNode(const Comparable& element): value{element}{};
-        explicit BinaryNode(Comparable&& element): value{std::move(element)} {};
+        explicit BinaryNode(const Comparable& value): value{value}{};
+        explicit BinaryNode(Comparable&& value): value{std::move(value)} {};
     };
 
     /*** Private Members ***/
@@ -84,7 +84,7 @@ private:
     BinaryNode* findMin(BinaryNode* node) const;
     BinaryNode* findMax(BinaryNode* node) const;
     BinaryNode* clone(BinaryNode* treeRoot) const;
-    bool contains(BinarySearchTree::BinaryNode *node, Comparable element) const;
+    bool contains(BinarySearchTree::BinaryNode *node, Comparable value) const;
     void printTree(BinaryNode *treeRoot, int depth) const;
 
     /*** Non-Constant Private Methods ***/
@@ -107,7 +107,7 @@ BinarySearchTree<Comparable>::BinarySearchTree() {
 /* Copy Constructor */
 template<typename Comparable>
 BinarySearchTree<Comparable>::BinarySearchTree(const BinarySearchTree& rhs) {
-    root = clone(rhs);
+    root = clone(rhs.root);
 }
 
 /* Move Constructor */
@@ -175,13 +175,13 @@ void BinarySearchTree<Comparable>::insert(Comparable &&value) {
 }
 
 template<typename Comparable>
-void BinarySearchTree<Comparable>::remove(const Comparable &element) {
-    remove(element,root);
+void BinarySearchTree<Comparable>::remove(const Comparable &value) {
+    remove(value, root);
 }
 
 template<typename Comparable>
-void BinarySearchTree<Comparable>::remove(Comparable &&element) {
-    remove(element,root);
+void BinarySearchTree<Comparable>::remove(Comparable &&value) {
+    remove(value, root);
 }
 
 template<typename Comparable>
@@ -228,9 +228,7 @@ template<typename Comparable>
 typename BinarySearchTree<Comparable>::BinaryNode *BinarySearchTree<Comparable>::clone(BinarySearchTree::BinaryNode *treeRoot) const {
     if(!treeRoot) return nullptr;
 
-    auto node = new BinaryNode();
-
-    node->value = treeRoot->value;   // Copy the value of treeRoot to the new node.
+    auto node = new BinaryNode(treeRoot->value); // Copy the value of treeRoot to a new node.
     node->right = clone(treeRoot->right);// Recursively clone the right subtree.
     node->left = clone(treeRoot->left);  // Recursively clone the left subtree.
 
@@ -238,10 +236,10 @@ typename BinarySearchTree<Comparable>::BinaryNode *BinarySearchTree<Comparable>:
 }
 
 template<typename Comparable>
-bool BinarySearchTree<Comparable>::contains(BinarySearchTree::BinaryNode *node, Comparable element) const {
+bool BinarySearchTree<Comparable>::contains(BinarySearchTree::BinaryNode *node, Comparable value) const {
     if(!node) return false;
-    if(element > node->value) return contains(node->right, element);
-    if(element < node->value) return contains(node->left, element);
+    if(value > node->value) return contains(node->right, value);
+    if(value < node->value) return contains(node->left, value);
 
     // value found
     return true;
