@@ -1,6 +1,45 @@
+// BinarySearchTree - A binary search tree implementation (BST).
+// A binary search tree is a data structure that allows efficient insertion,
+// removal, and search operations on a sorted collection of elements. In a BST,
+// each node has at most two children - a left child and a right child. The nodes
+// are arranged in a way that satisfies the binary search tree property: for every
+// node in the tree, all nodes in its left subtree have values less than the node's
+// value, and all nodes in its right subtree have values greater than the node's value.
 //
-// Created by MAHMOUD on 7/19/2023.
+// This header file defines the BinarySearchTree class, which provides a templated implementation
+// of a binary search tree. The class supports insertion, removal, search, finding minimum and
+// maximum elements, checking if the tree is empty, printing the tree, and more.
 //
+// The BinarySearchTree class uses a struct named BinaryNode to represent each node in the tree.
+// Each BinaryNode contains a comparable value and pointers to its left and right child nodes.
+// This class does not enforce any balancing mechanism, so its performance can degrade to O(n)
+// in the worst-case scenario, where n is the number of elements. However, it's suitable for
+// smaller collections and serves as a foundation for more advanced self-balancing trees like AVL or Red-Black trees.
+//
+// Usage example:
+//
+// --------------
+// BinarySearchTree<int> bst;
+// bst.insert(5);
+// bst.insert(10);
+// bst.insert(3);
+// bst.remove(5);
+// if (bst.contains(10)) {
+//     std::cout << "10 is in the BST!" << std::endl;
+// }
+// bst.printTree();
+//
+// The BinarySearchTree class allows insertion and removal of elements, providing
+// moderate search and retrieval performance with average time complexity of O(log n),
+// where n is the number of elements in the tree.
+//
+// Note: The Comparable type must support comparison operators (>, <, >=, <=) for proper functionality.
+//
+// This code is designed for educational purposes and can be freely used and modified.
+// Refer to the GitHub repository for the full code and documentation:
+// https://github.com/Mahmoud-Ameen/Data-Structures-and-Algorithm-Analysis-in-CPP
+//
+// Created by Mahmoud Ashraf on 7/19/2023.
 
 #ifndef DATA_STRUCTURES_AND_ALGORITHM_ANALYSIS_IN_C_BINARYSEARCHTREE_H
 #define DATA_STRUCTURES_AND_ALGORITHM_ANALYSIS_IN_C_BINARYSEARCHTREE_H
