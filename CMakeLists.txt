@@ -6,4 +6,4 @@ set(CMAKE_C_STANDARD 11)
 add_executable(d
         "Chapter 4 Trees/BinarySearchTree.h"
         main.cpp
-        )
+        "Chapter 4 Trees/AVLTree.h")
