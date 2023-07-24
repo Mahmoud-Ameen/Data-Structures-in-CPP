@@ -33,11 +33,11 @@
 // moderate search and retrieval performance with average time complexity of O(log n),
 // where n is the number of elements in the tree.
 //
-// Note: The Comparable type must support comparison operators (>, <, >=, <=) for proper functionality.
+// Note: The Key type must support comparison operators (>, <, >=, <=) for proper functionality.
 //
 // This code is designed for educational purposes and can be freely used and modified.
 // Refer to the GitHub repository for the full code and documentation:
-// https://github.com/Mahmoud-Ameen/Data-Structures-and-Algorithm-Analysis-in-CPP
+// https://github.com/Mahmoud-Ameen/Data-Structures-in-CPP
 //
 // Created by Mahmoud Ashraf on 7/19/2023.
 
@@ -68,7 +68,7 @@ public:
     const Comparable& findMax() const;
     /**
      * @brief searches the tree for an value.
-     * @param value Comparable to be searched for.
+     * @param value Key to be searched for.
      * @return true if found, otherwise false.
      * */
     bool contains(const Comparable& value) const;
@@ -329,7 +329,7 @@ void BinarySearchTree<Comparable>::insert(Comparable &&value, BinarySearchTree::
 
 template<typename Comparable>
 void BinarySearchTree<Comparable>::removeNode(BinarySearchTree<Comparable>::BinaryNode *&node) {
-    // Node is a leaf Node
+    // Node is a isLeaf Node
     // Just delete it's content and set the pointer to nullptr
     bool isLeaf = node->left == nullptr && node->right == nullptr;
     if (isLeaf) {

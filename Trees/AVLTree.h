@@ -29,11 +29,11 @@
 // The AVLTree class allows insertion and removal of elements while keeping the tree balanced,
 // providing fast search and retrieval of elements with logarithmic time complexity.
 //
-// Note: The Comparable type must support comparison operators (>, <, >=, <=) for proper functionality.
+// Note: The Key type must support comparison operators (>, <, >=, <=) for proper functionality.
 //
 // This code is designed for educational purposes and can be freely used and modified.
 // Refer to the GitHub repository for the full code and documentation:
-// https://github.com/Mahmoud-Ameen/Data-Structures-and-Algorithm-Analysis-in-CPP
+// https://github.com/Mahmoud-Ameen/Data-Structures-in-CPP
 //
 // Created by Mahmoud Ashraf on 7/22/2023.
 
@@ -94,7 +94,7 @@ public:
     const Comparable& findMax() const;
     /**
      * @brief searches the tree for an value.
-     * @param value Comparable to be searched for.
+     * @param value Key to be searched for.
      * @return true if found, otherwise false.
      * */
     bool contains(const Comparable& value) const;
@@ -495,7 +495,7 @@ void AVLTree<Comparable>::leftRotate(AVLNode*& node) {
 
 template<typename Comparable>
 void AVLTree<Comparable>::removeNode(AVLNode*& node) {
-    // Node is a leaf Node
+    // Node is a isLeaf Node
     // Just delete it's content and set the pointer to nullptr
     bool isLeaf = node->left == nullptr && node->right == nullptr;
     if (isLeaf) {
