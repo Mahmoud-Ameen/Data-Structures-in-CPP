@@ -86,12 +86,12 @@ public:
      * @return constant reference to the minimum value in the tree
      * @return nullptr if tree is empty
      * */
-    const Comparable& findMin() const;
+    Comparable findMin() const;
     /**
      * @return constant reference to the maximum value in the tree
      * @return nullptr if tree is empty
      * */
-    const Comparable& findMax() const;
+    Comparable findMax() const;
     /**
      * @brief searches the tree for an value.
      * @param value Key to be searched for.
@@ -142,7 +142,7 @@ private:
     /*** Static Members ***/
     static const int ALLOWED_IMBALANCE = 1;
 
-    /*** Static Helper Methods ***/
+    /*** Constant Private Helper Methods ***/
 
     /**
      * @brief Get the height of a given node in the AVL tree.
@@ -150,7 +150,7 @@ private:
      * @param node Pointer to the node for which height needs to be calculated.
      * @return The height of the node if it exists, otherwise -1.
      */
-    static int getHeight(const AVLNode *node);
+    int getHeight(const AVLNode *node) const;
     /**
      * @brief Get the balance factor of a given node in the AVL tree.
      *
@@ -160,7 +160,7 @@ private:
      * @param node Pointer to the node for which the balance factor needs to be calculated.
      * @return The balance factor of the node.
      */
-    static int getBalanceFactor(const AVLNode *node);
+    int getBalanceFactor(const AVLNode *node) const;
     /**
      * @brief Check if a given node is right-heavy in the AVL tree.
      *
@@ -169,7 +169,7 @@ private:
      * @param node Pointer to the node to be checked.
      * @return True if the node is right-heavy, otherwise false.
      */
-    static bool isRightHeavy(const AVLNode *node);
+    bool isRightHeavy(const AVLNode *node) const;
     /**
      * @brief Check if a given node is left-heavy in the AVL tree.
      *
@@ -178,7 +178,7 @@ private:
      * @param node Pointer to the node to be checked.
      * @return True if the node is left-heavy, otherwise false.
      */
-    static bool isLeftHeavy(const AVLNode *node);
+    bool isLeftHeavy(const AVLNode *node) const;
     /**
      * @brief Calculate and set the height of a given node in the AVL tree.
      *
@@ -186,16 +186,7 @@ private:
      *
      * @param node Pointer to the node for which the height needs to be updated.
      */
-    static void setHeight(AVLNode *node);
-
-    /**
-     * @brief Set the height of a given node in the AVL tree.
-     *
-     * The height of a node is the maximum height of its left and right subtrees plus 1.
-     *
-     * @param node Pointer to the node for which the height needs to be updated.
-     */
-    static void makeEmpty(AVLNode*& node);
+    void setHeight(AVLNode *node) const;
 
     /**
      * @brief Find the node with the minimum value starting from the given node in the AVL tree.
@@ -203,7 +194,7 @@ private:
      * @param node Pointer to the node from which the search for the minimum node begins.
      * @return Pointer to the node with the minimum value.
      */
-    static const AVLNode * findMin(const AVLNode *node);
+    AVLNode * findMin(AVLNode *node) const;
 
     /**
      * @brief Find the node with the maximum value starting from the given node in the AVL tree.
@@ -211,7 +202,7 @@ private:
      * @param node Pointer to the node from which the search for the maximum node begins.
      * @return Pointer to the node with the maximum value.
      */
-    static AVLNode* findMax(const AVLNode *node);
+    AVLNode* findMax(AVLNode *node) const;
 
     /**
      * @brief Recursively clone the AVL tree with the given tree root.
@@ -221,7 +212,7 @@ private:
      * @param treeRoot Pointer to the root node of the tree to be cloned.
      * @return Pointer to the root node of the cloned tree.
      */
-    static AVLNode* clone(const AVLNode *treeRoot);
+    AVLNode* clone(const AVLNode *treeRoot) const;
 
     /**
      * @brief Check if the AVL tree starting from the given node contains the specified value.
@@ -233,7 +224,7 @@ private:
      * @param value The value to be searched for in the AVL tree.
      * @return True if the value is found, otherwise false.
      */
-    static bool contains(const AVLNode*& node, Comparable value);
+    bool contains(const AVLNode* const& node, Comparable value) const;
 
     /**
      * @brief Print the AVL tree starting from the given node.
@@ -244,9 +235,18 @@ private:
      * @param treeRoot Pointer to the root node of the tree to be printed.
      * @param depth The depth of the current node in the tree (used for indentation).
      */
-    static void printTree(const AVLNode *treeRoot, int depth);
+    void printTree(const AVLNode *treeRoot, int depth);
 
-    /*** Private Member Methods ***/
+    /*** Non-Constant Private Member Methods ***/
+
+    /**
+ * @brief Set the height of a given node in the AVL tree.
+ *
+ * The height of a node is the maximum height of its left and right subtrees plus 1.
+ *
+ * @param node Pointer to the node for which the height needs to be updated.
+ */
+    void makeEmpty(AVLNode*& node);
 
     /**
     * @brief Inserts a value into the AVL tree starting from the given node.
@@ -289,18 +289,18 @@ private:
 
 /*** region Static Helper Methods  ***/
 template <typename Comparable>
-int AVLTree<Comparable>::getHeight(const AVLNode *node) {
+int AVLTree<Comparable>::getHeight(const AVLNode *node) const {
     return node ?  node->height : -1;
 }
 
 template <typename Comparable>
-void AVLTree<Comparable>::setHeight(AVLNode *node) {
+void AVLTree<Comparable>::setHeight(AVLNode *node) const {
     if(node)
         node->height = 1 + std::max(getHeight(node->right), getHeight(node->left));
 }
 
 template <typename Comparable>
-int AVLTree<Comparable>::getBalanceFactor(const AVLNode *node){
+int AVLTree<Comparable>::getBalanceFactor(const AVLNode *node) const {
     if(!node) return 0;
     int leftHeight = getHeight(node->left);
     int rightHeight = getHeight(node->right);
@@ -309,12 +309,12 @@ int AVLTree<Comparable>::getBalanceFactor(const AVLNode *node){
 }
 
 template <typename Comparable>
-bool AVLTree<Comparable>::isRightHeavy(const AVLNode *node){
+bool AVLTree<Comparable>::isRightHeavy(const AVLNode *node) const {
     return getBalanceFactor(node) < ALLOWED_IMBALANCE * -1;
 }
 
 template <typename Comparable>
-bool AVLTree<Comparable>::isLeftHeavy(const AVLNode *node){
+bool AVLTree<Comparable>::isLeftHeavy(const AVLNode *node) const {
     return getBalanceFactor(node) > ALLOWED_IMBALANCE;
 }
 
@@ -332,21 +332,25 @@ void AVLTree<Comparable>::makeEmpty(AVLTree::AVLNode *&node) {
 }
 
 template<typename Comparable>
-const typename AVLTree<Comparable>::AVLNode * AVLTree<Comparable>::findMin(const AVLNode *node) {
+typename AVLTree<Comparable>::AVLNode * AVLTree<Comparable>::findMin(AVLNode *node) const {
+    if(!node) return nullptr;
+
     if(!node->left) return node;
 
     return findMin(node->left);
 }
 
 template<typename Comparable>
-typename AVLTree<Comparable>::AVLNode* AVLTree<Comparable>::findMax(const AVLNode *node) {
+typename AVLTree<Comparable>::AVLNode* AVLTree<Comparable>::findMax(AVLNode *node) const {
+    if(!node) return nullptr;
+
     if(!node->right) return node;
     return findMax(node->right);
 
 }
 
 template<typename Comparable>
-typename  AVLTree<Comparable>::AVLNode* AVLTree<Comparable>::clone(const AVLNode *treeRoot){
+typename  AVLTree<Comparable>::AVLNode* AVLTree<Comparable>::clone(const AVLNode *treeRoot) const {
     if(!treeRoot) return nullptr;
 
     auto node = new AVLNode(treeRoot->value); // Copy the value of treeRoot to a new node.
@@ -357,7 +361,7 @@ typename  AVLTree<Comparable>::AVLNode* AVLTree<Comparable>::clone(const AVLNode
 }
 
 template<typename Comparable>
-bool AVLTree<Comparable>::contains(const AVLNode *&node, Comparable value) {
+bool AVLTree<Comparable>::contains(const  AVLNode * const& node, Comparable value) const {
     if(!node) return false;
     if(value > node->value) return contains(node->right, value);
     if(value < node->value) return contains(node->left, value);
@@ -584,13 +588,25 @@ void AVLTree<Comparable>::remove(Comparable && value) {
 
 /*** region Constant Public Methods ***/
 template <typename Comparable>
-const Comparable& AVLTree<Comparable>::findMin() const{
-    return findMin(root);
+Comparable AVLTree<Comparable>::findMin() const{
+    auto minNode =findMin(root);
+
+    if(!minNode){
+        throw std::runtime_error("The tree is empty. Cannot find minimum.");
+    }
+
+    return minNode->value;
 };
 
 template <typename Comparable>
-const Comparable& AVLTree<Comparable>::findMax() const{
-    return findMax(root);
+Comparable AVLTree<Comparable>::findMax() const{
+    auto maxNode = findMax(root);
+
+    if(!maxNode){
+        throw std::runtime_error("The tree is empty. Cannot find maximum.");
+    }
+
+    return maxNode->value;
 };
 
 template<typename Comparable>
