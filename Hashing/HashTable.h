@@ -8,22 +8,10 @@
  * The implementation uses a vector of linked lists to handle collisions. When multiple
  * elements are hashed to the same index, they are stored in a linked List at that index.
  * The implementation uses a rehashing technique to keep most operations as close
- * as possible to time complexity of O(n).
+ * as possible to time complexity of O(1).
  *
  * This HashTable class supports key-value pairs with generic types.
  * The hashing function used for the keys is the default std::hash function.
- *
- * Example usage:
- *
- * HashTable ht;
- * ht.insert("apple", 42);
- * ht.insert("banana", 73);
- * ht.insert("orange", 25);
- *
- * int value = ht.get("banana"); // value is now 73
- *
- * ht.remove("orange");
- * bool exists = ht.contains("orange"); // exists is now false
  *
  * @note This implementation does not support duplicate keys. If the same key is inserted
  * multiple times, only the last inserted value will be stored in the hash table
