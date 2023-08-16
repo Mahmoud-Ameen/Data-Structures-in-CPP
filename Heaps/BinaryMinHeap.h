@@ -29,16 +29,8 @@
 #define DSA_MINHEAP_H
 
 #include <vector>
+#include <iostream>
 
-/**
- * @brief A templated implementation of a binary min-heap data structure.
- *
- * The BinaryMinHeap class provides a container for maintaining a binary min-heap,
- * where the smallest element is always at the root. It supports efficient insertion,
- * extraction of the minimum element, and various heap-related operations.
- *
- * @tparam Comparable The type of elements stored in the heap. It should be a comparable type.
- */
 template<typename Comparable>
 class BinaryMinHeap {
 public:
@@ -201,6 +193,8 @@ void BinaryMinHeap<Comparable>::removeMin() {
 
 template<typename Comparable>
 Comparable BinaryMinHeap<Comparable>::extractMin() {
+    if(heap.empty()) throw std::out_of_range("Heap is empty.");
+
     Comparable min = heap[0];
     removeMin();
     return min;
