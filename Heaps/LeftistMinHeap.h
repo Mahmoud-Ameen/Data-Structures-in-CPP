@@ -10,7 +10,7 @@ template<typename Comparable>
 class LeftistMinHeap {
 
 public:
-    /**region Big Five*/
+    /*region Big Five*/
 
     // Default Constructor
     LeftistMinHeap() = default;
@@ -26,7 +26,7 @@ public:
 
     /*endregion*/
 
-    /**region Constant Public Methods **/
+    /*region Constant Public Methods **/
 
     /**
      * @return minimum element in heap
@@ -46,7 +46,7 @@ public:
 
     /*endregion*/
 
-    /**region Non-Constant Methods*/
+    /*region Non-Constant Methods*/
 
     /**
      * @brief inserts item to heap
@@ -83,7 +83,7 @@ private:
     Node* root = nullptr;
     int m_size = 0;
 
-    /**region Private Non-Const Methods */
+    /*region Private Non-Const Methods */
     Node* merge(Node* first,Node* second);
 
     /**
@@ -110,7 +110,7 @@ private:
 
 };
 
-/**region Leftist Heap Node */
+/*region Leftist Heap Node */
 template<typename Comparable>
 struct LeftistMinHeap<Comparable>::Node{
     Comparable value;
@@ -124,7 +124,7 @@ struct LeftistMinHeap<Comparable>::Node{
 };
 /*endregion*/
 
-/**region Big Five **/
+/*region Big Five **/
 
 template<typename Comparable>
 LeftistMinHeap<Comparable>::~LeftistMinHeap() {
@@ -151,7 +151,7 @@ LeftistMinHeap<Comparable>& LeftistMinHeap<Comparable>::operator=(const LeftistM
 
 /*endregion*/
 
-/**region Public Const Methods*/
+/*region Public Const Methods*/
 
 template<typename Comparable>
 bool LeftistMinHeap<Comparable>::isEmpty() const{
@@ -169,7 +169,7 @@ int LeftistMinHeap<Comparable>::size() const {
 }
 /*endregion*/
 
-/**region Public Non-Const Methods */
+/*region Public Non-Const Methods */
 
 template<typename Comparable>
 void LeftistMinHeap<Comparable>::insert(const Comparable &item) {
@@ -213,7 +213,7 @@ Comparable LeftistMinHeap<Comparable>::extractMin() {
 
 /*endregion*/
 
-/**region Private Non-Const Methods */
+/*region Private Non-Const Methods */
 
 template<typename Comparable>
 typename LeftistMinHeap<Comparable>::Node *LeftistMinHeap<Comparable>::merge(LeftistMinHeap::Node *first, LeftistMinHeap::Node *second) {

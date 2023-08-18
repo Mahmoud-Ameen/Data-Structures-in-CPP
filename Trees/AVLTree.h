@@ -70,7 +70,7 @@ private:
     };
 
 public:
-    /** Constructors */
+    /* Constructors */
 
     // default constructor
     AVLTree() = default;
@@ -81,7 +81,7 @@ public:
     // Destructor
     ~AVLTree();
 
-    /** Const Methods */
+    /* Const Methods */
     /**
      * @return constant reference to the minimum value in the tree
      * @return nullptr if tree is empty
@@ -113,7 +113,7 @@ public:
      * */
     void makeEmpty();
 
-    /** Non-Const Methods */
+    /* Non-Const Methods */
     /**
      * @brief Inserts a value into the AVL tree.
      * @param value The value to be inserted.
@@ -136,13 +136,11 @@ public:
     void remove(Comparable&& value);
 
 private:
-    /*** Private Members ***/
     AVLNode* root = nullptr;
 
-    /*** Static Members ***/
     static const int ALLOWED_IMBALANCE = 1;
 
-    /*** Constant Private Helper Methods ***/
+    /* Constant Private Helper Methods */
 
     /**
      * @brief Get the height of a given node in the AVL tree.
@@ -237,7 +235,7 @@ private:
      */
     void printTree(const AVLNode *treeRoot, int depth);
 
-    /*** Non-Constant Private Member Methods ***/
+    /* Non-Constant Private Member Methods */
 
     /**
  * @brief Set the height of a given node in the AVL tree.
@@ -287,7 +285,7 @@ private:
     void removeNode(AVLNode*& node);
 };
 
-/*** region Static Helper Methods  ***/
+/* region Static Helper Methods  */
 template <typename Comparable>
 int AVLTree<Comparable>::getHeight(const AVLNode *node) const {
     return node ?  node->height : -1;
@@ -386,7 +384,7 @@ void AVLTree<Comparable>::printTree(const AVLNode *treeRoot, int depth) {
 
 /* endregion */
 
-/*** region Constructors ***/
+/* region Constructors */
 
 /* Copy Constructor */
 template<typename Comparable>
@@ -408,7 +406,7 @@ AVLTree<Comparable>::~AVLTree() {
 }
 /* endregion */
 
-/*** region Private Member Methods ***/
+/* region Private Member Methods */
 
 template<typename Comparable>
 void AVLTree<Comparable>::balance(AVLNode *& node) {
@@ -563,7 +561,7 @@ void AVLTree<Comparable>::remove(const Comparable &value, AVLNode*& node) {
 
 /*endregion*/
 
-/*** region Non-Constant Public Methods  ***/
+/* region Non-Constant Public Methods  */
 template<typename Comparable>
 void AVLTree<Comparable>::insert(const Comparable& value){
     insert(value,root);
@@ -586,7 +584,7 @@ void AVLTree<Comparable>::remove(Comparable && value) {
 
 /* endregion */
 
-/*** region Constant Public Methods ***/
+/* region Constant Public Methods */
 template <typename Comparable>
 Comparable AVLTree<Comparable>::findMin() const{
     auto minNode =findMin(root);

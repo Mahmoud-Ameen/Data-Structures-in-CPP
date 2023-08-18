@@ -29,7 +29,7 @@ template<typename Key,typename Value>
 class HashTable {
 public:
 
-    /**region Big Five & Other Constructors*/
+    /*region Big Five & Other Constructors*/
 
     // Default Constructor
     HashTable();
@@ -55,7 +55,7 @@ public:
 
     /*region Constant Methods */
     /**
-     * @brief Checks if a key exists in the hash table->
+     * @brief Checks if a key exists in the hash table
      *
      * @param key The key to check for existence.
      * @return True if the key exists in the hash table, false otherwise.
@@ -82,7 +82,7 @@ public:
 
     // endregion
 
-    /** region Non-Constant Methods */
+    /* region Non-Constant Methods */
 
     /**
      * @brief Inserts a key-value pair into the hash table->
@@ -128,7 +128,7 @@ private:
     std::vector<List>* table = new std::vector<List>;   // Vector of linked lists (buckets) for hashing
     const int LOAD_FACTOR = 1;
 
-    /*** Private Constant Methods */
+    /* Private Constant Methods */
 
     /**
      * @brief Calculates the next prime number after the given number.
@@ -175,7 +175,7 @@ private:
     */
     [[nodiscard]] bool needResize() const;
 
-    /*** Private Non-Constant Methods */
+    /* Private Non-Constant Methods */
 
     /**
      * @brief Performs rehashing to resize the hash table.
@@ -184,7 +184,7 @@ private:
 
 };
 
-/**region HashTable Bucket (custom linked List) */
+/*region HashTable Bucket (custom linked List) */
 
 /**
  * @brief Definition of the Node struct used within the HashTable List.
@@ -398,7 +398,7 @@ struct HashTable<Key,Value>:: List{
 
 /*endregion */
 
-/***region Big five & other constructors */
+/*region Big five & other constructors */
 
 template<typename Key, typename Value>
 HashTable<Key, Value>::HashTable() {
@@ -467,7 +467,7 @@ HashTable<Key, Value>::HashTable(int size) :capacity(size){
 }
 /*endregion*/
 
-/**region Public Non-Constant Methods */
+/*region Public Non-Constant Methods */
 
 template<typename Key, typename Value>
 Value &HashTable<Key, Value>::operator[](const Key &key) {
@@ -512,7 +512,7 @@ void HashTable<Key, Value>::remove(Key && key) {
 
 /* endregion */
 
-/** region Private Constant Methods */
+/* region Private Constant Methods */
 
 template<typename Key, typename Value>
 std::vector<typename HashTable<Key, Value>::List> * HashTable<Key, Value>::cloneTable() const {
@@ -614,7 +614,7 @@ void HashTable<Key, Value>::rehash() {
 
 /*endregion*/
 
-/*** region Static Private Methods */
+/* region Static Private Methods */
 
 template<typename Key,typename Value>
 bool HashTable<Key,Value>::needResize() const {

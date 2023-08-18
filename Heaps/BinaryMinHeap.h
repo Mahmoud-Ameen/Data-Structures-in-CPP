@@ -34,10 +34,10 @@
 template<typename Comparable>
 class BinaryMinHeap {
 public:
-    /**region Constructors **/
+    /*region Constructors **/
     /*endregion*/
 
-    /**region Constant Public Methods **/
+    /*region Constant Public Methods **/
 
     /**
      * @return minimum element in heap
@@ -57,7 +57,7 @@ public:
 
     /*endregion*/
 
-    /**region Non-Constant Methods*/
+    /*region Non-Constant Methods*/
 
     /**
      * @brief inserts item to heap
@@ -84,7 +84,7 @@ public:
 private:
     std::vector<Comparable> heap;
 
-    /**region Private Constant (and Static) Methods */
+    /*region Private Constant (and Static) Methods */
     static int getParentIndex(int itemIndex);
     static int getRightChildIndex(int parentIndex);
     static int getLeftChildIndex(int parentIndex);
@@ -114,7 +114,7 @@ private:
 
     /*endregion*/
 
-    /**region Private Non-Constant methods **/
+    /*region Private Non-Constant methods **/
 
     /**
      * @brief Performs the "bubble up" operation in the binary min-heap.
@@ -143,7 +143,7 @@ private:
 
 };
 
-/**region Public Constant Methods */
+/*region Public Constant Methods */
 
 template<typename Comparable>
 Comparable BinaryMinHeap<Comparable>::getMin() const {
@@ -164,7 +164,7 @@ bool BinaryMinHeap<Comparable>::isEmpty() const {
 
 /*endregion*/
 
-/**region Public Non-Const Methods */
+/*region Public Non-Const Methods */
 template<typename Comparable>
 void BinaryMinHeap<Comparable>::insert(const Comparable &item) {
     heap.push_back(item);
@@ -202,7 +202,7 @@ Comparable BinaryMinHeap<Comparable>::extractMin() {
 
 /*endregion*/
 
-/**region Private Constant (and Static) Methods */
+/*region Private Constant (and Static) Methods */
 template<typename Comparable>
 int BinaryMinHeap<Comparable>::getRightChildIndex(int parentIndex){
     return parentIndex * 2 + 2;
@@ -249,7 +249,7 @@ bool BinaryMinHeap<Comparable>::needsBubbleUp(int itemIndex) const {
 
 /*endregion*/
 
-/**region Private Non-Constant methods **/
+/*region Private Non-Constant methods **/
 
 template<typename Comparable>
 void BinaryMinHeap<Comparable>::bubbleUp(int itemIndex) {
