@@ -45,7 +45,7 @@
 #define DATA_STRUCTURES_AND_ALGORITHM_ANALYSIS_IN_C_BINARYSEARCHTREE_H
 
 #include <iostream>
-#include <algorithm>
+#include <utility>
 
 template <typename Comparable>
 class BinarySearchTree
