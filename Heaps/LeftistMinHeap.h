@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <stack>
 
 template<typename Comparable>
 class LeftistMinHeap {
@@ -160,6 +161,7 @@ bool LeftistMinHeap<Comparable>::isEmpty() const{
 
 template<typename Comparable>
 Comparable LeftistMinHeap<Comparable>::getMin() const {
+    if(isEmpty()) throw std::underflow_error("Heap is empty!\n");
     return root->value;
 }
 
@@ -187,6 +189,9 @@ void LeftistMinHeap<Comparable>::merge(LeftistMinHeap &rhs) {
     if(&rhs == this) return;
 
     root = merge(root,rhs.root);
+
+    m_size += rhs.m_size;
+    rhs.m_size = 0;
     rhs.root = nullptr;
 }
 
@@ -237,14 +242,25 @@ typename LeftistMinHeap<Comparable>::Node *LeftistMinHeap<Comparable>::merge(Lef
 
 template<typename Comparable>
 void LeftistMinHeap<Comparable>::clear(LeftistMinHeap::Node *node) {
+    if (!node)
+        return;
 
-    if (node) {
-        clear(node->left);
-        clear(node->right);
-        delete node;
+    std::stack<Node*> nodeStack;
+    nodeStack.push(node);
+
+    while (!nodeStack.empty()) {
+        Node* current = nodeStack.top();
+        nodeStack.pop();
+
+        if (current->left)
+            nodeStack.push(current->left);
+        if (current->right)
+            nodeStack.push(current->right);
+
+        delete current;
     }
-
 }
+
 
 
 /*endregion*/
